@@ -1,9 +1,9 @@
 using UnityEngine;
 
 
-namespace Maze
+namespace GameField
 {
-    internal class FieldLimits : MonoBehaviour
+    public class FieldLimits : MonoBehaviour
     {
         [SerializeField]
         private float xLimitOffset;
@@ -26,6 +26,11 @@ namespace Maze
         internal Vector2 ClampPlayerPosition(Vector2 playerPosition)
         {
             return new Vector2(Mathf.Clamp(playerPosition.x, _minX, _maxX), Mathf.Clamp(playerPosition.y, _minY, _maxY));
+        }
+
+        internal bool IsPositionInsideZone(Vector2 position)
+        {
+            return position.x > _minX && position.x < _maxX && position.y > _minY && position.y < _maxY;
         }
 
         private Vector2 GetUpLeft()

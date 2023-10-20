@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameSettings:
     PlayerPrefab: {fileID: 1108037876693435712, guid: ab0af4fe77f837f40853b0abd7236369, type: 3}
+    BulletPrefab: {fileID: 1845531164668518553, guid: 7547227f3a5c9f1488bfb243c54da20c, type: 3}
   Player:
     StateMoving:
       Speed: 5
+  Bullet:
+    StateMoving:
+      Speed: 10

@@ -1,10 +1,15 @@
 using System;
 using UnityEngine;
 
-namespace Props.Player.States 
+namespace Props.Shared.States
 {
     public abstract class State : IDisposable
     {
+        public virtual void SetUp(params object[] parametres)
+        {
+
+        }
+
         public virtual void Update() { }
 
         public virtual void Start()

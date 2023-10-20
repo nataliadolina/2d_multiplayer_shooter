@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace UI
 {
-    internal abstract class JoystickControllerBase : MonoBehaviour
+    public abstract class JoystickControllerBase : MonoBehaviour
     {
         [Header("Joystick")]
         [SerializeField] private GameObject joystickGameObject;

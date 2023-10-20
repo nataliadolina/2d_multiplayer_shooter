@@ -4,10 +4,10 @@ using UniRx;
 
 namespace UI
 {
-    internal class PlayerDirectionInput : JoystickControllerBase
+    public class PlayerDirectionInput : JoystickControllerBase
     {
-        internal ReactiveProperty<Vector2> Direction = new ReactiveProperty<Vector2>();
-        internal ReactiveProperty<float> SpeedRatio = new ReactiveProperty<float>();
+        public ReactiveProperty<Vector2> Direction = new ReactiveProperty<Vector2>();
+        public ReactiveProperty<float> SpeedRatio = new ReactiveProperty<float>();
         private protected override void UpdatePlayerDirection(in Vector2 direction)
         {
             Direction.Value = direction;

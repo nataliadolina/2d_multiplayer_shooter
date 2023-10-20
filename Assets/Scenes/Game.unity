@@ -285,7 +285,10 @@ MonoBehaviour:
   knobTransform: {fileID: 1353861269}
   center: {fileID: 64574230}
   edgePoint: {fileID: 1354026738}
-  joystickRectangleZone: {fileID: 1669658778}
+  Direction:
+    value: {x: 0, y: 0}
+  SpeedRatio:
+    value: 0
 --- !u!114 &64574232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +525,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.94
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -907,7 +910,7 @@ MonoBehaviour:
   _components:
   - {fileID: 1335878661}
   _identifier: 
-  _useSceneContext: 0
+  _useSceneContext: 1
   _context: {fileID: 0}
   _bindType: 0
 --- !u!114 &1335878661
@@ -922,6 +925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3225f3a67042b547abb786aee655437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Shoot:
+    value: 0
 --- !u!4 &1335878662
 Transform:
   m_ObjectHideFlags: 0
@@ -1077,8 +1082,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc91a07e454f4e44b927cdfccb42978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xLimitOffset: 11.6
-  yLimitOffset: 5.91
+  xLimitOffset: 10.8
+  yLimitOffset: 4.27
 --- !u!4 &1371063155
 Transform:
   m_ObjectHideFlags: 0
@@ -1235,6 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afac5c70418e094cbab047bbe54199b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ZoneType: 0
   left: {fileID: 1500600639}
   right: {fileID: 168903418}
   down: {fileID: 983567854}
@@ -1328,6 +1334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afac5c70418e094cbab047bbe54199b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ZoneType: 1
   left: {fileID: 1005466789}
   right: {fileID: 756735066}
   down: {fileID: 965551858}

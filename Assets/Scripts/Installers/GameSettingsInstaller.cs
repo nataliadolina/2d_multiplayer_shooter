@@ -1,30 +1,40 @@
 using Props.Player.States;
 using System;
 using Zenject;
-using Maze;
 using UnityEngine;
-using UI;
+using Props.Bullet.States;
+using Props.Player.Installers;
 
 namespace Installers
 {
     [CreateAssetMenu(fileName = "GameSettingsInstaller", menuName = "Installers/new GameSettingsInstaller")]
-    internal class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
+    public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
     {
         [SerializeField]
-        internal GameInstaller.Settings GameSettings;
+        public GameInstaller.Settings GameSettings;
 
         [SerializeField]
-        internal PlayerSettings Player;
+        public PlayerSettings Player;
+
+        [SerializeField]
+        public BulletSettings Bullet;
 
         [Serializable]
-        internal class PlayerSettings
+        public class PlayerSettings
         {
             public PlayerMove.Settings StateMoving;
+        }
+
+        [Serializable]
+        public class BulletSettings
+        {
+            public BulletMove.Settings StateMoving;
         }
 
         public override void InstallBindings()
         {
             Container.BindInstance(Player.StateMoving);
+            Container.BindInstance(Bullet.StateMoving);
             Container.BindInstance(GameSettings);
         }
     }

@@ -1,22 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 using UI;
 using UniRx;
+using Props.Bullet;
+using Props.Shared.States;
+using Props.Bullet.Spawners;
 
 namespace Props.Player.States
 {
     public class PlayerShoot : State
     {
-        [Inject]
-        private TouchController touchController;
+        private BulletManager.Pool _bulletPool;
+        private TouchController _touchController;
 
-        private PlayerShoot()
+        public PlayerShoot(TouchController touchController,
+            BulletManager.Pool bulletPool)
         {
+            _bulletPool = bulletPool;
+            _touchController = touchController;
             touchController.Shoot
                 .Where(_ => _ == true)
-                .Subscribe(_ => Debug.Log("shoot"));
+                .Subscribe(_ => EmitBullet());
+        }
+
+        private void EmitBullet()
+        {
+            BulletManager bullet = _bulletPool.Spawn();
+            _touchController.Shoot.Value = false;
+        }
+
+        public class Factory : PlaceholderFactory<PlayerShoot>
+        {
+
         }
     }
 }

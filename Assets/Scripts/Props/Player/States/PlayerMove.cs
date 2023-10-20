@@ -2,8 +2,9 @@
 using UI;
 using UnityEngine;
 using Zenject;
-using Maze;
 using UniRx;
+using Props.Shared.States;
+using GameField;
 
 namespace Props.Player.States
 {
@@ -12,7 +13,7 @@ namespace Props.Player.States
         private float _speed;
         private FieldLimits _fieldLimits;
 
-        private Player _player;
+        private PlayerManager _player;
 
         private ReactiveProperty<float> _lastSpeedRatio = new ReactiveProperty<float>(0);
 
@@ -20,7 +21,7 @@ namespace Props.Player.States
 
         internal PlayerMove(
             FieldLimits fieldLimits,
-            Player player,
+            PlayerManager player,
             PlayerDirectionInput directionInput,
             Settings settings)
         {
@@ -36,13 +37,19 @@ namespace Props.Player.States
         {
             directionInput.Direction
                 .Where(direction => _lastDirection.Value != direction && direction != Vector2.zero)
-                .Subscribe(direction => _lastDirection.Value = direction);
+                .Subscribe(direction => SetDirection(direction));
             directionInput.SpeedRatio
                 .Subscribe(speedRatio => _lastSpeedRatio.Value = speedRatio);
 
             _lastDirection
                 .Where(x => x != Vector2.zero)
                 .Subscribe(direction => _player.Transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg));
+        }
+
+        private void SetDirection(Vector2 direction)
+        {
+            _lastDirection.Value = direction;
+            _player.Direction = direction;
         }
 
         private void Move(float speedRatio)

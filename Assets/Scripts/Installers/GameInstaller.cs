@@ -3,6 +3,7 @@ using Props.Player.Spawners;
 using Props.Player;
 using System;
 using UnityEngine;
+using Props.Shared;
 
 namespace Installers
 {
@@ -19,7 +20,7 @@ namespace Installers
         private void InstallPlayer()
         {
             Container.Bind<PlayerSpawner>().AsSingle().NonLazy();
-            Container.BindFactory<Player, Player.Factory>()
+            Container.BindFactory<PlayerManager, PlayerManager.Factory>()
                     .FromComponentInNewPrefab(_settings.PlayerPrefab)
                     .UnderTransformGroup("Players")
                     .WhenInjectedInto<PlayerSpawner>();
@@ -29,6 +30,7 @@ namespace Installers
         public class Settings
         {
             public GameObject PlayerPrefab;
+            public GameObject BulletPrefab;
         }
     }
 }

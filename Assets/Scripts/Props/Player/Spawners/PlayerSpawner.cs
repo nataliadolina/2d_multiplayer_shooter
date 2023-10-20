@@ -5,7 +5,7 @@ namespace Props.Player.Spawners
 {
     public class PlayerSpawner
     {
-        private Player.Factory _playerFactory;
+        private PlayerManager.Factory _playerFactory;
 
         [Inject]
         private void Construct()
@@ -13,12 +13,12 @@ namespace Props.Player.Spawners
             CreatePlayer();
         }
 
-        public PlayerSpawner(Player.Factory playerFactory)
+        public PlayerSpawner(PlayerManager.Factory playerFactory)
         {
             _playerFactory = playerFactory;
         }
 
-        public Player CreatePlayer()
+        public PlayerManager CreatePlayer()
         {
             return _playerFactory.Create();
         }
