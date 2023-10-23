@@ -24,7 +24,7 @@ namespace Props.Player
             ChangeState(startStatesTypes);
         }
 
-        public class Factory : PlaceholderFactory<PlayerManager>
+        public class Factory : PlaceholderFactory<UnityEngine.Object, PlayerManager>
         {
 
         }

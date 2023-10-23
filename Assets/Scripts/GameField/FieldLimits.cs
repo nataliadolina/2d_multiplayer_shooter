@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Zenject;
 
 namespace GameField
 {
@@ -15,7 +15,11 @@ namespace GameField
         private float _minY;
         private float _maxY;
 
-        private void Start()
+        public Vector2 XBounds => new Vector2(_minX, _maxX);
+        public Vector2 YBounds => new Vector2(_minY, _maxY);
+
+        [Inject]
+        private void Construct()
         {
             _minX = GetUpLeft().x;
             _maxX = GetUpRight().x;

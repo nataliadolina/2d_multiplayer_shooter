@@ -3,7 +3,8 @@ using Props.Player.Spawners;
 using Props.Player;
 using System;
 using UnityEngine;
-using Props.Shared;
+using Props.Shared.Spawners;
+using Events;
 
 namespace Installers
 {
@@ -20,10 +21,8 @@ namespace Installers
         private void InstallPlayer()
         {
             Container.Bind<PlayerSpawner>().AsSingle().NonLazy();
-            Container.BindFactory<PlayerManager, PlayerManager.Factory>()
-                    .FromComponentInNewPrefab(_settings.PlayerPrefab)
-                    .UnderTransformGroup("Players")
-                    .WhenInjectedInto<PlayerSpawner>();
+            Container.BindFactory<UnityEngine.Object, PlayerManager, PlayerManager.Factory>()
+                .FromFactory<PhotonFactory<PlayerManager>>();
         }
 
         [Serializable]

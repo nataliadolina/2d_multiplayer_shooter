@@ -1,3 +1,4 @@
+using Photon.Pun;
 using Props.Shared.Interfaces;
 using Props.Shared.States;
 using System;
@@ -7,7 +8,7 @@ using Zenject;
 
 namespace Props.Shared
 {
-    public class PropBase<StateType> : MonoBehaviour where StateType : Enum
+    public abstract class PropBase<StateType> : MonoBehaviour where StateType : Enum
     {
         [SerializeField]
         protected StateType[] startStatesTypes;
@@ -29,7 +30,12 @@ namespace Props.Shared
         private void Construct()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            ChangeState(startStatesTypes);
+
+            Debug.Log($"Photon view is mine ${GetComponent<PhotonView>().IsMine}");
+            if (GetComponent<PhotonView>().IsMine)
+            {
+                ChangeState(startStatesTypes);
+            }
         }
 
         private void Update()
